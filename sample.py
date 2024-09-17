@@ -1,4 +1,5 @@
 import datetime
+import unittest
 
 class Task:
     def __init__(self, description, due_date=None, priority=0):
@@ -66,7 +67,6 @@ def main():
     todo_list = TodoList()
 
     while True:
-        # Display menu options
         print("\n--- Todo List Manager ---")
         print("1. Add Task")
         print("2. View Tasks")
@@ -77,37 +77,56 @@ def main():
 
         choice = input("Enter your choice (1-6): ")
 
-        # Handle user's choice
         if choice == "1":
-            # Add a new task
             description = input("Enter the task description: ")
             due_date = get_date_input()
             priority = int(input("Enter priority (0-3, 0 being lowest): "))
             todo_list.add_task(Task(description, due_date, priority))
         elif choice == "2":
-            # View all tasks
             todo_list.view_tasks()
         elif choice == "3":
-            # Mark a task as complete
             todo_list.view_tasks()
             task_index = int(input("Enter the task number to mark as complete: "))
             todo_list.complete_task(task_index)
         elif choice == "4":
-            # Set priority for a task
             todo_list.view_tasks()
             task_index = int(input("Enter the task number to set priority: "))
             priority = int(input("Enter priority (0-3, 0 being lowest): "))
             todo_list.set_priority(task_index, priority)
         elif choice == "5":
-            # Filter tasks
             filter_option = input("Enter filter option (all/completed/pending): ").lower()
             todo_list.view_tasks(filter_option if filter_option != "all" else None)
         elif choice == "6":
-            # Quit the program
             print("Thank you for using Todo List Manager. Goodbye!")
             break
         else:
             print("Invalid choice. Please try again.")
 
+class TestTodoList(unittest.TestCase):
+    def setUp(self):
+        self.todo_list = TodoList()
+
+    def test_add_task(self):
+        task = Task("Test task")
+        self.todo_list.add_task(task)
+        self.assertEqual(len(self.todo_list.tasks), 1)
+        self.assertEqual(self.todo_list.tasks[0].description, "Test task")
+
+    def test_complete_task(self):
+        task = Task("Test task")
+        self.todo_list.add_task(task)
+        self.todo_list.complete_task(1)
+        self.assertTrue(self.todo_list.tasks[0].completed)
+
+    def test_set_priority(self):
+        task = Task("Test task")
+        self.todo_list.add_task(task)
+        self.todo_list.set_priority(1, 2)
+        self.assertEqual(self.todo_list.tasks[0].priority, 2)
+
 if __name__ == "__main__":
+    # Run the tests
+    unittest.main(exit=False)
+    
+    # Run the main application
     main()
