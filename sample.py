@@ -153,3 +153,6 @@ class TestTodoList(unittest.TestCase):
 if __name__ == "__main__":
     unittest.main(exit=False)
     main()
+
+# This Todo List Manager allows users to add, view, complete, edit, and prioritize tasks.
+# It also includes unit tests to ensure core functionality works as expected.
