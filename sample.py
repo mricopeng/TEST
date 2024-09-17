@@ -156,22 +156,3 @@ if __name__ == "__main__":
 
 # This Todo List Manager allows users to add, view, complete, edit, and prioritize tasks.
 # It also includes unit tests to ensure core functionality works as expected.
-
-# Additional features that could be implemented:
-# - Save and load tasks from a file
-# - Add categories or tags to tasks
-# - Implement a graphical user interface (GUI)
-# - Add reminders for upcoming due dates
-# - Implement recurring tasks
-# - Add collaboration features for shared todo lists
-#
-# The current implementation provides a solid foundation for a command-line
-# todo list application, with basic CRUD operations, filtering, and sorting.
-# The included unit tests help ensure the core functionality remains intact
-# as the application evolves.
-
-# Why did the programmer quit his job?
-# Because he didn't get arrays!
-
-# Why do programmers prefer dark mode?
-# Because light attracts bugs!
