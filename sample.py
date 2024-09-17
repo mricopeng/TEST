@@ -169,3 +169,6 @@ if __name__ == "__main__":
 # todo list application, with basic CRUD operations, filtering, and sorting.
 # The included unit tests help ensure the core functionality remains intact
 # as the application evolves.
+
+# Why did the programmer quit his job?
+# Because he didn't get arrays!
