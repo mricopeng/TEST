@@ -132,3 +132,15 @@ if __name__ == "__main__":
     main()
 
 # Making some changes to the code.
+
+# This Python script implements a Todo List Manager application with the following features:
+# 1. Add tasks with descriptions, due dates, and priorities
+# 2. View all tasks or filter them by completion status
+# 3. Mark tasks as complete
+# 4. Set task priorities
+# 5. Basic error handling for user inputs
+#
+# The script also includes a set of unit tests to verify the core functionality of the TodoList class.
+# When run, it first executes the tests and then starts the main application loop.
+# Users can interact with the application through a command-line interface, choosing options
+# from a menu to manage their tasks.
