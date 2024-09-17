@@ -131,16 +131,32 @@ if __name__ == "__main__":
     # Run the main application
     main()
 
-# Making some changes to the code.
+# This Python script implements a Todo List Manager with the following components:
 
-# This Python script implements a Todo List Manager application with the following features:
-# 1. Add tasks with descriptions, due dates, and priorities
-# 2. View all tasks or filter them by completion status
-# 3. Mark tasks as complete
-# 4. Set task priorities
-# 5. Basic error handling for user inputs
-#
-# The script also includes a set of unit tests to verify the core functionality of the TodoList class.
-# When run, it first executes the tests and then starts the main application loop.
-# Users can interact with the application through a command-line interface, choosing options
-# from a menu to manage their tasks.
+# Classes:
+# 1. Task: Represents a single task with attributes for description, completion status,
+#    due date, and priority.
+# 2. TodoList: Manages a collection of Task objects and provides methods for task operations.
+
+# Key features:
+# 1. Add tasks: Create new tasks with descriptions, optional due dates (YYYY-MM-DD format),
+#    and priority levels (0-3).
+# 2. View tasks: Display all tasks or filter by completion status (completed/pending).
+# 3. Complete tasks: Mark individual tasks as completed.
+# 4. Set priorities: Assign priority levels to tasks (0-3, with 3 being highest).
+
+# User interface:
+# - Command-line menu system for user interaction.
+# - Input validation for date formats and menu choices.
+
+# Testing:
+# - Includes unit tests for core TodoList functionalities (add, complete, set priority).
+# - Tests are automatically run before the main application starts.
+
+# Execution flow:
+# 1. Unit tests are executed.
+# 2. Main application loop begins, presenting the user with a menu of options.
+# 3. User can perform actions until choosing to quit the application.
+
+# Note: This script is designed for educational purposes and basic task management.
+# It does not include data persistence between sessions.
