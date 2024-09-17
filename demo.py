@@ -1,4 +1,5 @@
 import tkinter as tk
+import math
 
 class Calculator:
     def __init__(self, master):
@@ -28,8 +29,9 @@ class Calculator:
                 col = 0
                 row += 1
 
-        # Add clear button
-        tk.Button(master, text='Clear', command=self.clear, width=22).grid(row=row, column=0, columnspan=2, padx=2, pady=2)
+        # Add clear and square root buttons
+        tk.Button(master, text='Clear', command=self.clear, width=10).grid(row=row, column=0, padx=2, pady=2)
+        tk.Button(master, text='√', command=self.sqrt, width=10).grid(row=row, column=1, padx=2, pady=2)
 
     def click(self, key):
         if key == '=':
@@ -45,6 +47,16 @@ class Calculator:
 
     def clear(self):
         self.display.delete(0, tk.END)
+
+    def sqrt(self):
+        try:
+            value = float(self.display.get())
+            result = math.sqrt(value)
+            self.display.delete(0, tk.END)
+            self.display.insert(tk.END, str(result))
+        except ValueError:
+            self.display.delete(0, tk.END)
+            self.display.insert(tk.END, "Error")
 
 root = tk.Tk()
 calculator = Calculator(root)
