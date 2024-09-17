@@ -1,5 +1,6 @@
 import tkinter as tk
 import random
+import time
 
 jokes = [
     "Why don't scientists trust atoms? Because they make up everything!",
@@ -20,9 +21,23 @@ jokes = [
     "Why don't scientists trust atoms? Because they make up everything!",
 ]
 
+def generate_math_puzzle():
+    num1 = random.randint(1, 10)
+    num2 = random.randint(1, 10)
+    operator = random.choice(['+', '-', '*'])
+    if operator == '+':
+        answer = num1 + num2
+    elif operator == '-':
+        answer = num1 - num2
+    else:
+        answer = num1 * num2
+    return f"{num1} {operator} {num2}", answer
+
 def tell_joke():
-    joke = random.choice(jokes)
-    joke_label.config(text=joke)
+    puzzle, answer = generate_math_puzzle()
+    joke_index = answer % len(jokes)
+    joke = jokes[joke_index]
+    joke_label.config(text=f"Math puzzle: {puzzle}\nAnswer: {answer}\n\nJoke: {joke}")
 
 # Create the main window
 root = tk.Tk()
