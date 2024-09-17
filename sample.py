@@ -7,6 +7,7 @@ class Task:
         self.completed = False
         self.due_date = due_date
         self.priority = priority
+        self.created_at = datetime.datetime.now()
 
 class TodoList:
     def __init__(self):
@@ -16,7 +17,7 @@ class TodoList:
         self.tasks.append(task)
         print(f"Task '{task.description}' added successfully.")
 
-    def view_tasks(self, filter_option=None):
+    def view_tasks(self, filter_option=None, sort_by=None):
         # Check if the task list is empty
         if not self.tasks:
             print("No tasks in the list.")
@@ -28,6 +29,12 @@ class TodoList:
             filtered_tasks = [task for task in self.tasks if task.completed]
         elif filter_option == "pending":
             filtered_tasks = [task for task in self.tasks if not task.completed]
+
+        # Sort tasks based on the sort_by option
+        if sort_by == "priority":
+            filtered_tasks.sort(key=lambda x: (-x.priority, x.created_at))
+        elif sort_by == "due_date":
+            filtered_tasks.sort(key=lambda x: (x.due_date or datetime.date.max, x.created_at))
 
         # Display filtered tasks
         for index, task in enumerate(filtered_tasks, 1):
@@ -52,6 +59,23 @@ class TodoList:
         else:
             print("Invalid task index.")
 
+    def edit_task(self, task_index):
+        if 1 <= task_index <= len(self.tasks):
+            task = self.tasks[task_index - 1]
+            print(f"Editing task: {task.description}")
+            new_description = input("Enter new description (or press Enter to keep current): ")
+            if new_description:
+                task.description = new_description
+            new_due_date = get_date_input()
+            if new_due_date:
+                task.due_date = new_due_date
+            new_priority = input("Enter new priority (0-3, or press Enter to keep current): ")
+            if new_priority:
+                task.priority = int(new_priority)
+            print("Task updated successfully.")
+        else:
+            print("Invalid task index.")
+
 def get_date_input():
     # Get a valid date input from the user
     while True:
@@ -73,9 +97,11 @@ def main():
         print("3. Complete Task")
         print("4. Set Task Priority")
         print("5. Filter Tasks")
-        print("6. Quit")
+        print("6. Edit Task")
+        print("7. Sort Tasks")
+        print("8. Quit")
 
-        choice = input("Enter your choice (1-6): ")
+        choice = input("Enter your choice (1-8): ")
 
         if choice == "1":
             description = input("Enter the task description: ")
@@ -97,6 +123,13 @@ def main():
             filter_option = input("Enter filter option (all/completed/pending): ").lower()
             todo_list.view_tasks(filter_option if filter_option != "all" else None)
         elif choice == "6":
+            todo_list.view_tasks()
+            task_index = int(input("Enter the task number to edit: "))
+            todo_list.edit_task(task_index)
+        elif choice == "7":
+            sort_option = input("Sort by (priority/due_date): ").lower()
+            todo_list.view_tasks(sort_by=sort_option)
+        elif choice == "8":
             print("Thank you for using Todo List Manager. Goodbye!")
             break
         else:
@@ -135,7 +168,7 @@ if __name__ == "__main__":
 
 # Classes:
 # 1. Task: Represents a single task with attributes for description, completion status,
-#    due date, and priority.
+#    due date, priority, and creation timestamp.
 # 2. TodoList: Manages a collection of Task objects and provides methods for task operations.
 
 # Key features:
@@ -144,6 +177,8 @@ if __name__ == "__main__":
 # 2. View tasks: Display all tasks or filter by completion status (completed/pending).
 # 3. Complete tasks: Mark individual tasks as completed.
 # 4. Set priorities: Assign priority levels to tasks (0-3, with 3 being highest).
+# 5. Edit tasks: Update task descriptions, due dates, and priorities.
+# 6. Sort tasks: Sort tasks by priority or due date.
 
 # User interface:
 # - Command-line menu system for user interaction.
