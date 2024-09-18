@@ -19,6 +19,11 @@ jokes = [
     "Why did the scarecrow become a successful motivational speaker? He was outstanding in his field.",
     "What do you call a parade of rabbits hopping backwards? A receding hare-line.",
     "Why don't scientists trust atoms? Because they make up everything!",
+    "Why did the GitHub repo go to therapy? It had too many issues!",
+    "How does GitHub stay cool? It has many fans and lots of branches!",
+    "What's a programmer's favorite place to hang out? The commit bar!",
+    "Why did Copilot become a standup comedian? It was already finishing everyone's lines!",
+    "What do you call a GitHub pull request that's always accepted? Merge Simpson!",
 ]
 
 def generate_math_puzzle():
