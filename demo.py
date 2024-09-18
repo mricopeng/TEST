@@ -15,7 +15,8 @@ class Calculator:
             '7', '8', '9', '/', 'cos',
             '4', '5', '6', '*', 'sin',
             '1', '2', '3', '-', 'tan',
-            '0', '.', '=', '+', '√'
+            '0', '.', '=', '+', '√',
+            'log', 'exp'  # Add new buttons for log and exp
         ]
 
         # Add buttons to the grid
@@ -29,8 +30,10 @@ class Calculator:
                 col = 0
                 row += 1
 
-        # Add clear button
-        tk.Button(master, text='Clear', command=self.clear, width=18).grid(row=row, column=0, columnspan=2, padx=2, pady=2)
+        # Adjust the grid layout to accommodate new buttons
+        tk.Button(master, text='Clear', command=self.clear, width=8).grid(row=row, column=0, padx=2, pady=2)
+        tk.Button(master, text='log', command=lambda: self.click('log'), width=8).grid(row=row, column=1, padx=2, pady=2)
+        tk.Button(master, text='exp', command=lambda: self.click('exp'), width=8).grid(row=row, column=2, padx=2, pady=2)
 
     def click(self, key):
         if key == '=':
@@ -41,7 +44,7 @@ class Calculator:
             except:
                 self.display.delete(0, tk.END)
                 self.display.insert(tk.END, "Error")
-        elif key in ['cos', 'sin', 'tan', '√']:
+        elif key in ['cos', 'sin', 'tan', '√', 'log', 'exp']:  # Add 'log' and 'exp' here
             self.calculate_function(key)
         else:
             self.display.insert(tk.END, key)
@@ -60,6 +63,10 @@ class Calculator:
                 result = math.tan(math.radians(value))
             elif func == '√':
                 result = math.sqrt(value)
+            elif func == 'log':
+                result = math.log10(value)  # Using log base 10
+            elif func == 'exp':
+                result = math.exp(value)
             self.display.delete(0, tk.END)
             self.display.insert(tk.END, str(result))
         except ValueError:
